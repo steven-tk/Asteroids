@@ -54,6 +54,13 @@ def main():
                 print("Game over!")
                 sys.exit()
 
+        for ast in asteroids:
+            for pew in shots:
+                if ast.collides_with(pew) == True:
+                    log_event("asteroid_shot")
+                    ast.kill()
+                    pew.kill()
+
         dt = Clock.tick(60) / 1000
 
 
