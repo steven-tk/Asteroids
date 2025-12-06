@@ -2,6 +2,8 @@
 
 Future feature ideas:
 
+- game over screen
+- offset asteroid split more naturally? (do collision first)
 - add 2 player mode (arrow + right shift?)
 - add sprite graphics (license? make myself?)
   - sprite atlas to draw randomly from? just scale one?
