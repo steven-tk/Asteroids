@@ -6,6 +6,7 @@ from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
+from shrapnel import Shrapnel
 
 
 
@@ -21,6 +22,7 @@ def main():
     dt = 0
     Clock = pygame.time.Clock()
 
+    shrapnels = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
@@ -36,6 +38,8 @@ def main():
     AsteroidField1 = AsteroidField()
 
     Shot.containers = (shots, updatable, drawable)
+
+    Shrapnel.container = (shrapnels, updatable, drawable)
 
     while True:
         log_state()

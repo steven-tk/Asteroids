@@ -29,11 +29,3 @@ class CircleShape(pygame.sprite.Sprite):
             return True
         else:
             return False
-
-
-
-    # self.position()
-    # returns vector
-
-    # distance_to()
-    # calcs distance to vector, returns float
