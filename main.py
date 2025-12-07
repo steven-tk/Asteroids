@@ -22,6 +22,9 @@ def main():
     dt = 0
     Clock = pygame.time.Clock()
 
+    p1_score = 0
+    p2_score = 0
+
     shrapnels = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
@@ -55,7 +58,7 @@ def main():
         for ast in asteroids:
             if ast.collides_with(Player1) == True:
                 log_event("player_hit")
-                print("Game over!")
+                print(f"Game over! You've scored {p1_score}")
                 sys.exit()
 
         for ast in asteroids:
@@ -64,6 +67,7 @@ def main():
                     log_event("asteroid_shot")
                     ast.split()
                     pew.kill()
+                    p1_score += 1
 
         dt = Clock.tick(60) / 1000
 

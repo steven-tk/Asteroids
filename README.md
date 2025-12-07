@@ -1,6 +1,8 @@
 # Asteroids Project
 
-Future feature ideas:
+## Done
+
+- Asteroid explosions with randomized shrapnel in all directions
 
 ## TODO
 
@@ -8,6 +10,8 @@ Future feature ideas:
 - [ ] Fix collisions to use proper hitboxes
 
 ## Plans
+
+Future feature ideas:
 
 ### Prio 1
 
