@@ -5,7 +5,9 @@
 - Asteroid explosions with randomized shrapnel in all directions
 - Basic score tracking (prints on death)
 - Basic sound effect as a proof of concept
-- Added asteroid-on-asteroid bounce
+- Added asteroid-on-asteroid bounce (no mass/size physics)
+- Fixed asteroid split offset
+
 
 ## TODO
 
@@ -15,6 +17,7 @@
 - [ ] Spawn "shot" at front of ship rather than center
 - [ ] Randomize asteroid base speed and add speed on bounce?
 - [ ] Make Asteroid bounce radius dependent (faking mass)
+- [ ] Test asteroid bounce with collision thrown in
 
 ## Plans
 
@@ -22,12 +25,12 @@ Future feature ideas:
 
 ### Prio 1
 
+- add screen wrap for player & shots
 - add 2 player mode (arrow + right shift?)
   - use subclass and overwrite control function
   - Control via command flags (e.g. -2p) (or menu later on?)
-- add screen wrap for player & shots
-- add bounce for asteroids-on-asteroids (damage? No? Toggle option?) and player-on-player (non damage-collision/ toggle?)
-- offset asteroid split more naturally? (do collision first and check)
+  - add bounce for player-on-player (non damage-collision/ toggle?)
+- add HUD to track score (+ upgrades later on)
 - sound/music?
   - free sources?
 
@@ -49,15 +52,15 @@ Future feature ideas:
 - add asteroid sprite graphics (license? make myself?)
   - random rotation speed/direction
   - sprite atlas to draw randomly from? just scale one?
-- ALT: try programmatically created shapes.
-  - how to add multiple shapes to one entity? (Like small craters on the asteroids)
-  - explosion effect via small lines coming off the original asteroid that die after time/distance x  
+  - ALT: try programmatically created shapes.
+    - how to add multiple shapes to one entity? (Like small craters on the asteroids)
 
 ### Player features
 
 - add acceleration (player) (also missile if added as weapon)
-- add life (max 3?) / respawn mechanic
-- add invulnerable frames & dmg to asteroid
+  - try with strafing controls (q/e)
+- add life (max 3?) / respawn mechanic or short invul?
+- add invulnerable frames & dmg to asteroid on ship collision?
 - triangular hitbox for player
 - collectable upgrades?
   - add drops (+life, fire rate, ..?)
