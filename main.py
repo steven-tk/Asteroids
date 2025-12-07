@@ -1,6 +1,6 @@
 import pygame
 import sys
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT, COLLISION_DIST
 from logger import log_state, log_event
 from player import Player
 from asteroid import Asteroid
@@ -18,11 +18,14 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}\nScreen height: {SCREEN_HEIGHT}")
 
     # ====================
-    # Control Booleans
+    # Controls
     # ====================
     logging_on = False
     invulnerability = True
     bounce_on = True
+    entity_check = True
+    player_two = False
+    TICK = 120 # make a flag later
     # ====================
 
     pygame.init()
@@ -32,6 +35,7 @@ def main():
 
     p1_score = 0
     p2_score = 0
+    frame_count = 0
 
     shrapnels = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
@@ -53,7 +57,8 @@ def main():
     Shrapnel.containers = (shrapnels, updatable, drawable)
 
     while True:
-        log_state()
+        #if logging_on:
+        #    log_state()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 print(f"Game over! You've scored {p1_score}")
@@ -65,7 +70,11 @@ def main():
             thing.draw(screen)
         pygame.display.flip()
         
-        for ast in asteroids:
+        ast_list = list(asteroids)
+
+        for ast in ast_list:
+            if ast.position.distance_squared_to(Player1.position) > COLLISION_DIST**2:
+                continue
             if ast.collides_with(Player1):
                 if logging_on:
                     log_event("player_hit")
@@ -73,24 +82,31 @@ def main():
                     print(f"Game over! You've scored {p1_score}")
                     sys.exit()
 
-        if bounce_on == True:    
-            for i, ast in enumerate(asteroids):
-                for j, roid in enumerate(asteroids):
-                    if j <= i:
-                        continue  # skip self and already-handled pairs
+        if bounce_on == True:
+            for i, ast in enumerate(ast_list):
+                for roid in ast_list[i+1:]:
+                    if ast.position.distance_squared_to(roid.position) > COLLISION_DIST**2:
+                        continue
                     if ast.collides_with(roid):
                         ast.bounce(roid)
 
-
-
-        for ast in asteroids:
-            for pew in shots:
+        for pew in shots:
+            for ast in ast_list:
                 if ast.collides_with(pew):
                     ast.split()
                     pew.kill()
                     p1_score += 1
 
-        dt = Clock.tick(60) / 1000
+        dt = Clock.tick(TICK) / 1000
+
+        """ if entity_check
+            frame_count += 1
+            if frame_count % 60 == 0:
+                print("Asteroids:", len(asteroids), "Shots:", len(shots), "Shrapnels:", len(shrapnels)) """
+
+        
+
+    
 
 
 if __name__ == "__main__":

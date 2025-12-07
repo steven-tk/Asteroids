@@ -8,7 +8,6 @@
 - Added asteroid-on-asteroid bounce (no mass/size physics)
 - Fixed asteroid split offset
 
-
 ## TODO
 
 - [ ] Find better sounds.. (spamable for shots) or edit current one
