@@ -18,7 +18,6 @@ class Asteroid(CircleShape):
     def explode(self, min_size, max_size):
         num_shrapnel = random.randint(5,12)
         split_angle = 360 / num_shrapnel
-        log_event("asteroid_explode")
 
         for i in range(num_shrapnel):
             shrap_bolt = Shrapnel(self.position[0], self.position[1], SHRAPNEL_WIDTH, SHRAPNEL_HEIGHT)
@@ -30,7 +29,6 @@ class Asteroid(CircleShape):
             self.explode(0.2, 1.5)
             return
         else:
-            log_event("asteroid_split")
             self.explode(1, 3)
             random_angle = random.uniform(20,50)
             new_radius = self.radius - ASTEROID_MIN_RADIUS
@@ -59,11 +57,8 @@ class Asteroid(CircleShape):
             return
 
         normal = normal.normalize()
+        #fake_mass = (self.radius + other.radius) / 2
 
-        self.velocity -= 2 * self.velocity.dot(normal) * normal
-        other.velocity -= 2 * other.velocity.dot(normal) * normal
-
-
-
-    
-       
+        self.velocity -= 2 * self.velocity.dot(normal) * normal #* other.radius / fake_mass
+        other.velocity -= 2 * other.velocity.dot(-normal) * -normal #* self.radius / fake_mass
+        #FIXME mass feels off - needs better math

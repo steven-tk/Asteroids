@@ -20,6 +20,8 @@ def main():
     # ====================
     # Control Booleans
     # ====================
+    logging_on = False
+    invulnerability = True
     bounce_on = True
     # ====================
 
@@ -54,6 +56,7 @@ def main():
         log_state()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                print(f"Game over! You've scored {p1_score}")
                 return
 
         screen.fill("black")
@@ -61,11 +64,14 @@ def main():
         for thing in drawable:
             thing.draw(screen)
         pygame.display.flip()
+        
         for ast in asteroids:
             if ast.collides_with(Player1):
-                log_event("player_hit")
-                print(f"Game over! You've scored {p1_score}")
-                sys.exit()
+                if logging_on:
+                    log_event("player_hit")
+                if invulnerability == False:
+                    print(f"Game over! You've scored {p1_score}")
+                    sys.exit()
 
         if bounce_on == True:    
             for i, ast in enumerate(asteroids):
@@ -73,7 +79,6 @@ def main():
                     if j <= i:
                         continue  # skip self and already-handled pairs
                     if ast.collides_with(roid):
-                        log_event("asteroid_collision")
                         ast.bounce(roid)
 
 
@@ -81,7 +86,6 @@ def main():
         for ast in asteroids:
             for pew in shots:
                 if ast.collides_with(pew):
-                    log_event("asteroid_shot")
                     ast.split()
                     pew.kill()
                     p1_score += 1
