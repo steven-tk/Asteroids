@@ -23,7 +23,7 @@ class RectangleShape(pygame.sprite.Sprite):
         pass
     
     def collides_with(self, other):
-        # TODO quick hack emulating circles, fix after implementing proper hit-boxes
+        # FIXME quick hack emulating circles
         r1 = self.height
         r2 = other.radius
 

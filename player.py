@@ -56,3 +56,4 @@ class Player(CircleShape):
             location = self.position
             bullet = Shot(location[0], location[1], SHOT_RADIUS)
             bullet.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
+            bullet.shot_sound.play()

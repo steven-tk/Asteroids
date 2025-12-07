@@ -3,11 +3,15 @@
 ## Done
 
 - Asteroid explosions with randomized shrapnel in all directions
+- Basic score tracking (prints on death)
+- basic sound effect as a proof of concept
 
 ## TODO
 
-- [ ] Implement non-circle hitboxes
+- [ ] Find better sounds.. (spamable for shots) or edit current one
+- [ ] Implement non-circular hitboxes
 - [ ] Fix collisions to use proper hitboxes
+- [ ] Spawn "shot" at front of ship rather than center
 
 ## Plans
 
@@ -18,11 +22,9 @@ Future feature ideas:
 - add 2 player mode (arrow + right shift?)
   - use subclass and overwrite control function
   - Control via command flags (e.g. -2p) (or menu later on?)
-- add score tracking (per player)
 - add screen wrap for player & shots
 - add bounce for asteroids-on-asteroids (damage? No? Toggle option?) and player-on-player (non damage-collision/ toggle?)
 - offset asteroid split more naturally? (do collision first and check)
-- basic explosion effect (see below)
 - sound/music?
   - free sources?
 
@@ -44,7 +46,6 @@ Future feature ideas:
 - add asteroid sprite graphics (license? make myself?)
   - random rotation speed/direction
   - sprite atlas to draw randomly from? just scale one?
-- add explosion effect???
 - ALT: try programmatically created shapes.
   - how to add multiple shapes to one entity? (Like small craters on the asteroids)
   - explosion effect via small lines coming off the original asteroid that die after time/distance x  
@@ -63,3 +64,7 @@ for ship on asteroid collision)
 ## Reminder
 
 try using the debugger
+
+## Attribution
+
+Sound Effect by [Universfield](https://pixabay.com/users/universfield-28281460/) from [Pixabay](https://pixabay.com/)
