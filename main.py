@@ -39,7 +39,7 @@ def main():
 
     Shot.containers = (shots, updatable, drawable)
 
-    Shrapnel.container = (shrapnels, updatable, drawable)
+    Shrapnel.containers = (shrapnels, updatable, drawable)
 
     while True:
         log_state()

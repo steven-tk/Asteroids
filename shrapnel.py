@@ -9,7 +9,7 @@ class Shrapnel(RectangleShape):
     
     def draw(self, screen):
         rect = (self.position[0], self.position[1], self.width, self.height)
-        pygame.draw.rect(screen, "white", rect, 0)
+        pygame.draw.rect(screen, "grey", rect, 0)
 
     def update(self, dt):
         self.position += self.velocity * dt

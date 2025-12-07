@@ -15,22 +15,23 @@ class Asteroid(CircleShape):
     def update(self, dt):
         self.position += self.velocity * dt
 
-    def explode(self):
-        log_event("asteroid_explode")
-        num_shrapnel = random.randint(3,8)
+    def explode(self, min_size, max_size):
+        num_shrapnel = random.randint(5,12)
         split_angle = 360 / num_shrapnel
+        log_event("asteroid_explode")
 
-        for i in range(0, num_shrapnel + 1):
+        for i in range(num_shrapnel):
             shrap_bolt = Shrapnel(self.position[0], self.position[1], SHRAPNEL_WIDTH, SHRAPNEL_HEIGHT)
-            shrap_bolt.velocity = self.velocity.rotate(split_angle * i)
+            shrap_bolt.velocity = self.velocity.rotate(split_angle * i) * random.uniform(min_size, max_size)
     
     def split(self):
         self.kill()
         if self.radius <= ASTEROID_MIN_RADIUS:
+            self.explode(0.2, 1.5)
             return
         else:
             log_event("asteroid_split")
-            self.explode()
+            self.explode(1, 3)
             random_angle = random.uniform(20,50)
             new_radius = self.radius - ASTEROID_MIN_RADIUS
             speed_up = 1.2
