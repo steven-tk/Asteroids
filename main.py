@@ -17,6 +17,12 @@ def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
     print(f"Screen width: {SCREEN_WIDTH}\nScreen height: {SCREEN_HEIGHT}")
 
+    # ====================
+    # Control Booleans
+    # ====================
+    bounce_on = True
+    # ====================
+
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     dt = 0
@@ -56,14 +62,25 @@ def main():
             thing.draw(screen)
         pygame.display.flip()
         for ast in asteroids:
-            if ast.collides_with(Player1) == True:
+            if ast.collides_with(Player1):
                 log_event("player_hit")
                 print(f"Game over! You've scored {p1_score}")
                 sys.exit()
 
+        if bounce_on == True:    
+            for i, ast in enumerate(asteroids):
+                for j, roid in enumerate(asteroids):
+                    if j <= i:
+                        continue  # skip self and already-handled pairs
+                    if ast.collides_with(roid):
+                        log_event("asteroid_collision")
+                        ast.bounce(roid)
+
+
+
         for ast in asteroids:
             for pew in shots:
-                if ast.collides_with(pew) == True:
+                if ast.collides_with(pew):
                     log_event("asteroid_shot")
                     ast.split()
                     pew.kill()

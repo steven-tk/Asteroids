@@ -41,3 +41,35 @@ class Asteroid(CircleShape):
             new2 = Asteroid(self.position[0], self.position[1], new_radius)
             new2.velocity = self.velocity.rotate(-random_angle)
     
+    def bounce(self, other):
+        # probably need to define contact plane first and then bounce off of that?
+        self.velocity = self.velocity.rotate(45)
+        other.velocity = other.velocity.rotate(45)
+
+
+    def bounce(self, other):
+        # push each half the overlap distance apart
+        delta = other.position - self.position
+        dist = delta.length()
+        overlap = self.radius + other.radius - dist
+
+        if overlap > 0 and dist > 0:
+            normal = delta / dist
+            
+            self.position -= normal * (overlap / 2)
+            other.position += normal * (overlap / 2)
+
+        # reflect both velocities across the collision normal
+        normal = other.position - self.position
+        if normal.length_squared() == 0:
+            return
+
+        normal = normal.normalize()
+
+        self.velocity -= 2 * self.velocity.dot(normal) * normal
+        other.velocity -= 2 * other.velocity.dot(normal) * normal
+
+
+
+    
+       

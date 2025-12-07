@@ -4,7 +4,8 @@
 
 - Asteroid explosions with randomized shrapnel in all directions
 - Basic score tracking (prints on death)
-- basic sound effect as a proof of concept
+- Basic sound effect as a proof of concept
+- Added asteroid-on-asteroid bounce
 
 ## TODO
 
@@ -12,6 +13,8 @@
 - [ ] Implement non-circular hitboxes
 - [ ] Fix collisions to use proper hitboxes
 - [ ] Spawn "shot" at front of ship rather than center
+- [ ] Randomize asteroid base speed and add speed on bounce?
+- [ ] Make Asteroid bounce radius dependent (faking mass)
 
 ## Plans
 
