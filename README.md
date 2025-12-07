@@ -6,17 +6,17 @@
 - Basic score tracking (prints on death)
 - Basic sound effect as a proof of concept
 - Added asteroid-on-asteroid bounce (no mass/size physics)
-- Fixed asteroid split offset
+- Fixed asteroid splitting with an offset
 
 ## TODO
 
+- [ ] Implement cli flags to control settings for now (invul, logging, bounce on/off, ...)
 - [ ] Find better sounds.. (spamable for shots) or edit current one
+- [ ] Spawn "shot" at front of ship rather than center
 - [ ] Implement non-circular hitboxes
 - [ ] Fix collisions to use proper hitboxes
-- [ ] Spawn "shot" at front of ship rather than center
 - [ ] Randomize asteroid base speed and add speed on bounce?
 - [ ] Make Asteroid bounce radius dependent (faking mass)
-- [ ] Test asteroid bounce with collision thrown in
 
 ## Plans
 
