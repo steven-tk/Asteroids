@@ -15,6 +15,7 @@ Latest change at the bottom of the list.
 - Added: Scoring based on size (med/big = 2, small = 1)
 - Added: Mass for physic calculations
 - Fixed: Bounce physics now uses mass (toggle for planar vs volumetric)
+- Added: Audio-manager and changed how sound is handled
 
 ## TODO
 
