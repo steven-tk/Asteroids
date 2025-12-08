@@ -1,5 +1,6 @@
 import pygame
 import random
+import math
 from constants import LINE_WIDTH, ASTEROID_MIN_RADIUS, SHRAPNEL_WIDTH, SHRAPNEL_HEIGHT
 from circleshape import CircleShape
 from shrapnel import Shrapnel
@@ -8,6 +9,11 @@ from logger import log_event
 class Asteroid(CircleShape):
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
+        self.density = random.uniform(0.8, 1.2)
+        # Planar mass:
+        self.mass = math.pi * self.radius ** 2
+        # Volumetric mass:
+        # self.mass = self.density * (4/3) * math.pi * self.radius **3
 
     def draw(self, screen):
         pygame.draw.circle(screen, "white", self.position, self.radius, LINE_WIDTH)
@@ -52,8 +58,7 @@ class Asteroid(CircleShape):
             new2 = Asteroid(self.position[0], self.position[1], new_radius)
             new2.velocity = self.velocity.rotate(-random_angle) * speed_up
 
-    def bounce(self, other):
-        self.overlap(other)
+    def bounce(self, other, restitution=1.0):
 
         # reflect both velocities across the collision normal
         normal = other.position - self.position
@@ -61,8 +66,42 @@ class Asteroid(CircleShape):
             return
 
         normal = normal.normalize()
-        #fake_mass = (self.radius + other.radius) / 2
+        tangent = pygame.Vector2(-normal.y, normal.x)
+        m1 = self.mass
+        m2 = other.mass
 
-        self.velocity -= 2 * self.velocity.dot(normal) * normal #* other.radius / fake_mass
-        other.velocity -= 2 * other.velocity.dot(-normal) * -normal #* self.radius / fake_mass
-        #FIXME mass feels off - needs better math
+        # project velocities onto normal and tangent
+        v1n = self.velocity.dot(normal)
+        v1t = self.velocity.dot(tangent)
+        v2n = other.velocity.dot(normal)
+        v2t = other.velocity.dot(tangent)
+
+        # 1D elastic collision for normal components with restitution applied
+        # Restitution reminder: (1.0 = perfectly elastic, <1 = some energy loss)
+        new_v1n = (v1n * (m1 - m2) + 2 * m2 * v2n) / (m1 + m2) * restitution
+        new_v2n = (v2n * (m2 - m1) + 2 * m1 * v1n) / (m1 + m2) * restitution
+
+        # recombine scalar components into vectors
+        self.velocity = tangent * v1t + normal * new_v1n
+        other.velocity = tangent * v2t + normal * new_v2n
+
+        # optional: simple positional separation to resolve overlap
+        overlap = (self.radius + other.radius) - (self.position.distance_to(other.position))
+        if overlap > 0:
+            # push each away proportional to their mass (so heavier moves less)
+            total = m1 + m2
+            if total > 0:
+                self.position += -normal * (overlap * (m2 / total))
+                other.position += normal * (overlap * (m1 / total))
+
+        # old version:
+        # self.overlap(other)
+        # self.velocity -= 2 * self.velocity.dot(normal) * normal
+        # other.velocity -= 2 * other.velocity.dot(-normal) * -normal
+        
+
+
+
+
+
+
