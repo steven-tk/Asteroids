@@ -18,11 +18,24 @@ class Asteroid(CircleShape):
     def explode(self, min_size, max_size):
         num_shrapnel = random.randint(5,12)
         split_angle = 360 / num_shrapnel
+        hit_sound = pygame.mixer.Sound("assets/sounds/rescopicsound-hit-ping-01.mp3")
 
+        hit_sound.play()
         for i in range(num_shrapnel):
             shrap_bolt = Shrapnel(self.position[0], self.position[1], SHRAPNEL_WIDTH, SHRAPNEL_HEIGHT)
             shrap_bolt.velocity = self.velocity.rotate(split_angle * i) * random.uniform(min_size, max_size)
     
+    def overlap(self, other):
+        delta = other.position - self.position
+        dist = delta.length()
+        overlap = self.radius + other.radius - dist
+
+        if overlap > 0 and dist > 0:
+            normal = delta / dist
+
+            self.position -= normal * (overlap / 2)
+            other.position += normal * (overlap / 2)
+
     def split(self):
         self.kill()
         if self.radius <= ASTEROID_MIN_RADIUS:
@@ -37,19 +50,10 @@ class Asteroid(CircleShape):
             new1 = Asteroid(self.position[0], self.position[1], new_radius)
             new1.velocity = self.velocity.rotate(random_angle) * speed_up
             new2 = Asteroid(self.position[0], self.position[1], new_radius)
-            new2.velocity = self.velocity.rotate(-random_angle)
-    
-    def bounce(self, other):
-        # push each half the overlap distance apart
-        delta = other.position - self.position
-        dist = delta.length()
-        overlap = self.radius + other.radius - dist
+            new2.velocity = self.velocity.rotate(-random_angle) * speed_up
 
-        if overlap > 0 and dist > 0:
-            normal = delta / dist
-            
-            self.position -= normal * (overlap / 2)
-            other.position += normal * (overlap / 2)
+    def bounce(self, other):
+        self.overlap(other)
 
         # reflect both velocities across the collision normal
         normal = other.position - self.position

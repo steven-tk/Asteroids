@@ -1,6 +1,6 @@
 import pygame
 import sys
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, COLLISION_DIST
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT, COLLISION_DIST, ASTEROID_MIN_RADIUS
 from logger import log_state, log_event
 from player import Player
 from asteroid import Asteroid
@@ -91,13 +91,22 @@ def main():
                         continue
                     if ast.collides_with(roid):
                         ast.bounce(roid)
+                        # FIXME split the larger probably needs offset at bounce() before split()
+                        #if ast.radius > roid.radius:
+                        #    ast.split()
+                        #    ast.overlap(roid, True)
+                        #else: roid.split()
 
         for pew in shots:
             for ast in ast_list:
                 if ast.collides_with(pew):
                     ast.split()
                     pew.kill()
-                    p1_score += 1
+                    if ast.radius > ASTEROID_MIN_RADIUS:
+                        p1_score += 2
+                    else:
+                        p1_score += 1
+
 
         dt = Clock.tick(TICK) / 1000
 

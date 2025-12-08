@@ -2,17 +2,22 @@
 
 ## Done
 
-- Asteroid explosions with randomized shrapnel in all directions
-- Basic score tracking (prints on death)
-- Basic sound effect as a proof of concept
-- Added asteroid-on-asteroid bounce (no mass/size physics)
-- Fixed asteroid splitting with an offset
+Latest change at the bottom of the list.
+
+- Added: Asteroid explosions with randomized shrapnel in all directions
+- Added: Basic score tracking (prints on death)
+- Added: Basic sound effect as a proof of concept
+- Added: Asteroid-on-asteroid bounce (no mass/size physics yet)
+- Fixed: Asteroid splitting with offset
+- Fixed: Bullet spawn location (in front instead of inside player)
+- Improved: Randomized shot sound (less monotonous) with new sounds
+- Added: Asteroid destruction sound (placeholder?)
+- Added: Scoring based on size (med/big = 2, small = 1)
 
 ## TODO
 
 - [ ] Implement cli flags to control settings for now (invul, logging, bounce on/off, ...)
-- [ ] Find better sounds.. (spamable for shots) or edit current one
-- [ ] Spawn "shot" at front of ship rather than center
+- [ ] Find better sounds.. (spamable for shots) or edit current one (loudness)
 - [ ] Implement non-circular hitboxes
 - [ ] Fix collisions to use proper hitboxes
 - [ ] Randomize asteroid base speed and add speed on bounce?
@@ -72,4 +77,4 @@ try using the debugger
 
 ## Attribution
 
-Sound Effect by [Universfield](https://pixabay.com/users/universfield-28281460/) from [Pixabay](https://pixabay.com/)
+Sound Effect by [RescopicSound](https://pixabay.com/users/rescopicsound-45188866/) from [Pixabay](https://pixabay.com/)
