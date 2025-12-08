@@ -13,6 +13,8 @@ Latest change at the bottom of the list.
 - Improved: Randomized shot sound (less monotonous) with new sounds
 - Added: Asteroid destruction sound (placeholder?)
 - Added: Scoring based on size (med/big = 2, small = 1)
+- Added: Mass for physic calculations
+- Fixed: Bounce physics now uses mass (toggle for planar vs volumetric)
 
 ## TODO
 

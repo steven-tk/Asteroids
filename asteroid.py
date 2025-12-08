@@ -2,6 +2,7 @@ import pygame
 import random
 import math
 from constants import LINE_WIDTH, ASTEROID_MIN_RADIUS, SHRAPNEL_WIDTH, SHRAPNEL_HEIGHT
+from main.py import volumetric_mass
 from circleshape import CircleShape
 from shrapnel import Shrapnel
 from logger import log_event
@@ -10,10 +11,11 @@ class Asteroid(CircleShape):
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
         self.density = random.uniform(0.8, 1.2)
-        # Planar mass:
-        self.mass = math.pi * self.radius ** 2
-        # Volumetric mass:
-        # self.mass = self.density * (4/3) * math.pi * self.radius **3
+        # Planar mass vs vulumetric mass:
+        if volumetric_mass:
+            self.mass = self.density * (4/3) * math.pi * self.radius **3
+        else:
+            self.mass = math.pi * self.radius ** 2
 
     def draw(self, screen):
         pygame.draw.circle(screen, "white", self.position, self.radius, LINE_WIDTH)

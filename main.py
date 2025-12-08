@@ -24,6 +24,7 @@ def main():
     entity_check = False
 
     bounce_on = True
+    volumetric_mass = False
     player_two = False
     invulnerability = False
     
