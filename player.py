@@ -34,6 +34,12 @@ class Player(CircleShape):
             self.move(-dt)
         if keys[pygame.K_d]:
             self.rotate(dt)
+
+        if keys[pygame.K_e]:
+            self.strafe(dt)
+        if keys[pygame.K_q]:
+            self.strafe(-dt)
+
         if keys[pygame.K_SPACE]:
             self.shoot()
 
@@ -42,18 +48,21 @@ class Player(CircleShape):
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
 
-    def move(self,dt):
+    def move(self, dt):
         unit_vector = pygame.Vector2(0, 1)
         rotated_vector = unit_vector.rotate(self.rotation)
         rotated_with_speed_vector = rotated_vector * PLAYER_SPEED * dt
         self.position += rotated_with_speed_vector
+    
+    def strafe(self, dt):
+        pass
 
     def shoot(self):
         if self.cooldown >0:
             pass
         else:
             self.cooldown = PLAYER_SHOOT_COOLDOWN_SECONDS
-            location = self.position
+            location = self.position + pygame.Vector2(0,PLAYER_RADIUS).rotate(self.rotation)
             bullet = Shot(location[0], location[1], SHOT_RADIUS)
             bullet.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
             bullet.shot_sound.play()

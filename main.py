@@ -21,11 +21,13 @@ def main():
     # Controls
     # ====================
     logging_on = False
-    invulnerability = True
+    entity_check = False
+
     bounce_on = True
-    entity_check = True
     player_two = False
-    TICK = 120 # make a flag later
+    invulnerability = False
+    
+    TICK = 0 # make a flag for it later
     # ====================
 
     pygame.init()

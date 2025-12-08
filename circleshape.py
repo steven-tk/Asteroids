@@ -29,4 +29,5 @@ class CircleShape(pygame.sprite.Sprite):
             return True
         else:
             return False
-            
+
+# Reminder: https://www.phatcode.net/articles.php?id=459
