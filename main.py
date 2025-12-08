@@ -10,9 +10,6 @@ from shrapnel import Shrapnel
 
 
 
-
-
-
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
     print(f"Screen width: {SCREEN_WIDTH}\nScreen height: {SCREEN_HEIGHT}")
@@ -24,7 +21,6 @@ def main():
     entity_check = False
 
     bounce_on = True
-    volumetric_mass = False
     player_two = False
     invulnerability = False
     
@@ -85,7 +81,7 @@ def main():
                     print(f"Game over! You've scored {p1_score}")
                     sys.exit()
 
-        if bounce_on == True:
+        if bounce_on == True: 
             for i, ast in enumerate(ast_list):
                 for roid in ast_list[i+1:]:
                     if ast.position.distance_squared_to(roid.position) > COLLISION_DIST**2:

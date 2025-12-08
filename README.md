@@ -80,3 +80,4 @@ try using the debugger
 ## Attribution
 
 Sound Effect by [RescopicSound](https://pixabay.com/users/rescopicsound-45188866/) from [Pixabay](https://pixabay.com/)
+Music by [1](link) and [2](link) from [source](link)
