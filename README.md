@@ -79,5 +79,10 @@ try using the debugger
 
 ## Attribution
 
-Sound Effect by [RescopicSound](https://pixabay.com/users/rescopicsound-45188866/) from [Pixabay](https://pixabay.com/)
-Music by [1](link) and [2](link) from [source](link)
+Sound Effect by
+
+- [RescopicSound](https://pixabay.com/users/rescopicsound-45188866/) from [Pixabay](https://pixabay.com/)
+
+Music by
+
+- [5 Chiptunes (Action)](https://opengameart.org/content/5-chiptunes-action) by [Juhani Junkala](https://www.youtube.com/watch?v=dbACpSy9FWY) from [OpenGameArt](https://opengameart.org/) under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)

@@ -2,6 +2,7 @@ import pygame
 import random
 import math
 from constants import LINE_WIDTH, ASTEROID_MIN_RADIUS, SHRAPNEL_WIDTH, SHRAPNEL_HEIGHT
+from audio_manager import Audio
 from circleshape import CircleShape
 from shrapnel import Shrapnel
 from logger import log_event
@@ -23,9 +24,8 @@ class Asteroid(CircleShape):
     def explode(self, min_size, max_size):
         num_shrapnel = random.randint(5,12)
         split_angle = 360 / num_shrapnel
-        hit_sound = pygame.mixer.Sound("assets/sounds/rescopicsound-hit-ping-01.mp3")
 
-        hit_sound.play()
+        Audio.play_sound("asteroid_hit")
         for i in range(num_shrapnel):
             shrap_bolt = Shrapnel(self.position[0], self.position[1], SHRAPNEL_WIDTH, SHRAPNEL_HEIGHT)
             shrap_bolt.velocity = self.velocity.rotate(split_angle * i) * random.uniform(min_size, max_size)

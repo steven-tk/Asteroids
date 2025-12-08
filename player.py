@@ -1,5 +1,6 @@
 import pygame
 from constants import PLAYER_RADIUS, LINE_WIDTH, PLAYER_TURN_SPEED, PLAYER_SPEED, PLAYER_SHOOT_SPEED, SHOT_RADIUS, PLAYER_SHOOT_COOLDOWN_SECONDS
+from audio_manager import Audio
 from circleshape import CircleShape
 from shot import Shot
 
@@ -65,4 +66,4 @@ class Player(CircleShape):
             location = self.position + pygame.Vector2(0,PLAYER_RADIUS).rotate(self.rotation)
             bullet = Shot(location[0], location[1], SHOT_RADIUS)
             bullet.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
-            bullet.shot_sound.play()
+            Audio.play_sound("blaster", 5)
