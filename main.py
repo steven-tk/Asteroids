@@ -1,6 +1,7 @@
 import pygame
 import sys
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT, COLLISION_DIST, ASTEROID_MIN_RADIUS
+from audio_manager import Audio
 from logger import log_state, log_event
 from player import Player
 from asteroid import Asteroid
@@ -31,6 +32,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     dt = 0
     Clock = pygame.time.Clock()
+    Audio.start_music()
 
     p1_score = 0
     p2_score = 0
@@ -106,6 +108,8 @@ def main():
 
 
         dt = Clock.tick(TICK) / 1000
+
+        
 
         """ if entity_check
             frame_count += 1

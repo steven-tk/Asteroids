@@ -16,6 +16,7 @@ Latest change at the bottom of the list.
 - Added: Mass for physic calculations
 - Fixed: Bounce physics now uses mass (toggle for planar vs volumetric)
 - Added: Audio-manager and changed how sound is handled
+- Added: Music loading and playback (proof of concept)
 
 ## TODO
 

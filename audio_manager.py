@@ -30,15 +30,30 @@ class AudioManager:
             print(f"Sound '{sound_id}' not found.")
 
 
+    def start_music(self):
+        if pygame.mixer.music.get_busy():
+            pass
+        else:
+            first_track = self.music_files.get("start")
+            pygame.mixer.music.load(first_track)
+            pygame.mixer.music.play()
+
+
+    def queue_music(self, name):
+        next_song = None
+
+        #logic based on name
+
+        pygame.mixer.music.queue()
+        return next_song
+
+
+    def play_music(self, name, loop=True):
+        pass
+    
+    
+            # logic for checking current song, queueing next using queue_music and running through list of songs (battle1-3)
+            # check if i should use pygame.mixer.music.unload
+
 
 Audio = AudioManager()
-
-
-""" pygame.mixer.music.play
-pygame.mixer.music.queue()
-pygame.mixer.music.get_busy() # boolean
-
-
-
-pygame.mixer.music.load
-pygame.mixer.music.unload """
