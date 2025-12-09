@@ -10,6 +10,7 @@ class Player(CircleShape):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
         self.cooldown = 0
+        self.invul_timer = 0
     
     # in the Player class
     def triangle(self):
@@ -45,6 +46,7 @@ class Player(CircleShape):
             self.shoot()
 
         self.cooldown -= dt
+        self.invul_timer -= dt
         
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
@@ -67,3 +69,12 @@ class Player(CircleShape):
             bullet = Shot(location[0], location[1], SHOT_RADIUS)
             bullet.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
             Audio.play_sound("blaster", 5)
+
+    def teleport_to(self, x, y):
+        self.position = pygame.Vector2(x, y)
+
+    def invul_check(self):
+        if self.invul_timer > 0:
+            return True
+        else:
+            return False

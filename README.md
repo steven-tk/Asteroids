@@ -14,6 +14,7 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 
 ## Changelog
 
+- Added: 3 lives, upon hit: respawn in center (1sec invulnerability) & savezone cleared of asteroids
 - Improvement: Colors tweaks
 - Added: Pause key (p)
 - Improved: Music queue with randomized playback (except the opening song)
@@ -42,9 +43,7 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 - [ ] Implement non-circular hitboxes
 - [ ] Fix collisions to use proper hitboxes for player
 
-## Plans
-
-Future feature ideas:
+## Future feature ideas
 
 ### Prio
 
@@ -69,8 +68,7 @@ Future feature ideas:
 - add background
   - sprite or programmatically created?
   - parallax?
-  - make color subtle  
-- add asteroid sprite graphics (license? make myself?)
+- add asteroid sprite graphics (source?/license? DIY?)
   - random rotation speed/direction
   - sprite atlas to draw randomly from? just scale one?
   - ALT: try programmatically created shapes.
@@ -79,7 +77,7 @@ Future feature ideas:
 ### Player features
 
 - add acceleration (player) (also missile if added as weapon)
-  - try with strafing controls (q/e)
+  - try strafing controls (q/e)
 - add life (max 3?) / respawn mechanic or short invul?
 - add invulnerable frames & dmg to asteroid on ship collision?
 - triangular hitbox for player
