@@ -17,6 +17,7 @@ Latest change at the bottom of the list.
 - Fixed: Bounce physics now uses mass (toggle for planar vs volumetric)
 - Added: Audio-manager and changed how sound is handled
 - Added: Music loading and playback (proof of concept)
+- Added: Music queue with randomized playback (except the opening song)
 
 ## TODO
 
@@ -39,8 +40,7 @@ Future feature ideas:
   - Control via command flags (e.g. -2p) (or menu later on?)
   - add bounce for player-on-player (non damage-collision/ toggle?)
 - add HUD to track score (+ upgrades later on)
-- sound/music?
-  - free sources?
+- add progressive difficulty in some way (faster spawns...?)
 
 ### Menu/screens
 

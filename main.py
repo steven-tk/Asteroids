@@ -23,15 +23,17 @@ def main():
 
     bounce_on = True
     player_two = False
-    invulnerability = False
+    invulnerability = True
     
-    TICK = 0 # make a flag for it later
+    TICK = 120 # make a flag for it later
     # ====================
 
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     dt = 0
     Clock = pygame.time.Clock()
+    MUSIC_END = pygame.USEREVENT + 1
+    pygame.mixer.music.set_endevent(MUSIC_END)
     Audio.start_music()
 
     p1_score = 0
@@ -64,6 +66,8 @@ def main():
             if event.type == pygame.QUIT:
                 print(f"Game over! You've scored {p1_score}")
                 return
+            if event.type == MUSIC_END:
+                Audio.play_continuous()
 
         screen.fill("black")
         updatable.update(dt)

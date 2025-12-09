@@ -19,6 +19,8 @@ class AudioManager:
             "battle3": "audio/music/juhani-junkala-level3.wav",
             "menu": "audio/music/juhani-junkala-ending.wav"
         }
+        self.music_playing = None
+        self.music_queued = None
 
     def play_sound(self, name, random_range=1):
         sound_id = f"{name}{random.randint(1,random_range)}"
@@ -34,26 +36,26 @@ class AudioManager:
         if pygame.mixer.music.get_busy():
             pass
         else:
-            first_track = self.music_files.get("start")
-            pygame.mixer.music.load(first_track)
+            self.music_playing = "start"
+            self.music_queued = "battle1"
+            pygame.mixer.music.load(self.music_files.get(self.music_playing))
             pygame.mixer.music.play()
+            pygame.mixer.music.queue(self.music_files.get(self.music_queued))
 
+    def get_next_song(self):
+        self.music_queued = f"battle{random.randint(1,3)}"
+        """ # hardcoded playlist
+        if self.music_playing == "battle1":
+            self.music_queued = "battle2"
+        if self.music_playing == "battle2":
+            self.music_queued = "battle3"
+        if self.music_playing == "battle3":
+            self.music_queued = "battle1" """
+        
 
-    def queue_music(self, name):
-        next_song = None
-
-        #logic based on name
-
-        pygame.mixer.music.queue()
-        return next_song
-
-
-    def play_music(self, name, loop=True):
-        pass
-    
-    
-            # logic for checking current song, queueing next using queue_music and running through list of songs (battle1-3)
-            # check if i should use pygame.mixer.music.unload
-
+    def play_continuous(self):
+        self.music_playing = self.music_queued
+        self.get_next_song()
+        pygame.mixer.music.queue(self.music_files.get(self.music_queued))
 
 Audio = AudioManager()
