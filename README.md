@@ -1,6 +1,6 @@
 # Asteroids Project
 
-Project uses [pygame](https://www.pygame.org/) and [UV](https://docs.astral.sh/uv/). I've also used [Mise](https://mise.jdx.dev/mise-cookbook/python.html#mise-uv) but that should be optional.
+Project uses [pygame](https://www.pygame.org/) build with [UV](https://docs.astral.sh/uv/) and [Mise](https://mise.jdx.dev/mise-cookbook/python.html#mise-uv).
 
 ---
 
