@@ -1,31 +1,45 @@
 # Asteroids Project
 
-## Done
+Project uses [pygame](https://www.pygame.org/) and [UV](https://docs.astral.sh/uv/). I've also used [Mise](https://mise.jdx.dev/mise-cookbook/python.html#mise-uv) but that should be optional.
 
-Latest change at the bottom of the list.
+---
 
-- Added: Asteroid explosions with randomized shrapnel in all directions
-- Added: Basic score tracking (prints on death)
-- Added: Basic sound effect as a proof of concept
-- Added: Asteroid-on-asteroid bounce (no mass/size physics yet)
-- Fixed: Asteroid splitting with offset
-- Fixed: Bullet spawn location (in front instead of inside player)
-- Improved: Randomized shot sound (less monotonous) with new sounds
-- Added: Asteroid destruction sound (placeholder?)
-- Added: Scoring based on size (med/big = 2, small = 1)
-- Added: Mass for physic calculations
-- Fixed: Bounce physics now uses mass (toggle for planar vs volumetric)
-- Added: Audio-manager and changed how sound is handled
-- Added: Music loading and playback (proof of concept)
-- Added: Music queue with randomized playback (except the opening song)
+Controls:
+
+- W/A/S/D to move
+- SPACE to shoot
+- P to pause/unpause
+
+Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing, invulnerability, ..).
+
+## Changelog
+
+- Improvement: Colors tweaks
 - Added: Pause key (p)
+- Improved: Music queue with randomized playback (except the opening song)
+- Added: Music loading and playback (proof of concept)
+- Added: Audio-manager and changed how sound is handled
+- Improved: Bounce physics now uses mass (toggle for planar vs volumetric)
+- Added: Mass for physic calculations
+- Improved: Scoring based on size (med/big = 2, small = 1)
+- Added: Asteroid destruction sound (placeholder?)
+- Improved: Randomized shot sound (less monotonous) with new sounds
+- Fixed: Bullet spawn location (in front instead of inside player)
+- Fixed: Asteroid splitting correctly with offset (instead of overlapping)
+- Added: Asteroid-on-asteroid bounce (no mass/size physics yet)
+- Added: Basic sound effect as a proof of concept
+- Added: Basic score tracking (prints on death)
+- Added: Asteroid explosions with randomized shrapnel in all direction
+- Added: Rectangle class
 
 ## TODO
 
-- [ ] Implement cli flags to control settings for now (invul, logging, bounce on/off, ...)
-- [ ] Find better sounds.. (spamable for shots) or edit current one (loudness)
+- [ ] Boolean for bounce calculation type (planar vs volumetric)
+- [ ] High-score tracking (via file?)
+- [ ] Implement cli flags to control settings (invulnerability, logging, bounce on/off, ...)
+- [ ] Find better sounds..
 - [ ] Implement non-circular hitboxes
-- [ ] Fix collisions to use proper hitboxes
+- [ ] Fix collisions to use proper hitboxes for player
 
 ## Plans
 

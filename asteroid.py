@@ -16,7 +16,7 @@ class Asteroid(CircleShape):
         self.mass = math.pi * self.radius ** 2
 
     def draw(self, screen):
-        pygame.draw.circle(screen, "white", self.position, self.radius, LINE_WIDTH)
+        pygame.draw.circle(screen, "grey", self.position, self.radius, LINE_WIDTH)
 
     def update(self, dt):
         self.position += self.velocity * dt
