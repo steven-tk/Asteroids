@@ -18,6 +18,7 @@ Latest change at the bottom of the list.
 - Added: Audio-manager and changed how sound is handled
 - Added: Music loading and playback (proof of concept)
 - Added: Music queue with randomized playback (except the opening song)
+- Added: Pause key (p)
 
 ## TODO
 
@@ -25,14 +26,12 @@ Latest change at the bottom of the list.
 - [ ] Find better sounds.. (spamable for shots) or edit current one (loudness)
 - [ ] Implement non-circular hitboxes
 - [ ] Fix collisions to use proper hitboxes
-- [ ] Randomize asteroid base speed and add speed on bounce?
-- [ ] Make Asteroid bounce radius dependent (faking mass)
 
 ## Plans
 
 Future feature ideas:
 
-### Prio 1
+### Prio
 
 - add screen wrap for player & shots
 - add 2 player mode (arrow + right shift?)
@@ -49,7 +48,6 @@ Future feature ideas:
   - load file/store in file?
   - top10? Separate 2p tracking?
 - add an ingame menu
-- add pause/menu (esc?)
 
 ### Graphics
 

@@ -16,18 +16,21 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}\nScreen height: {SCREEN_HEIGHT}")
 
     # ====================
-    # Controls
+    # Debug Controls & Settings
     # ====================
     logging_on = False
     entity_check = False
 
     bounce_on = True
     player_two = False
-    invulnerability = True
-    
-    TICK = 120 # make a flag for it later
-    # ====================
+    invulnerability = False
 
+    TICK = 120 # make a flag for it later
+
+
+    # ====================
+    # Game Init
+    # ====================
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     dt = 0
@@ -39,81 +42,93 @@ def main():
     p1_score = 0
     p2_score = 0
     frame_count = 0
+    pause = False
 
+    # ====================
+    # Groups & Containers
+    # ====================
     shrapnels = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    always_updatable = pygame.sprite.Group()
     
-
     Player.containers = (updatable, drawable)
-    Player1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-
     Asteroid.containers = (asteroids, updatable, drawable)
-
+    Shot.containers = (shots, updatable, drawable)
+    Shrapnel.containers = (shrapnels, updatable, drawable)
     AsteroidField.containers = (updatable)
+
+    # ====================
+    # Object Init
+    # ====================
+    Player1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    # Player2 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     AsteroidField1 = AsteroidField()
 
-    Shot.containers = (shots, updatable, drawable)
 
-    Shrapnel.containers = (shrapnels, updatable, drawable)
-
+    # ====================
+    # Game Loop
+    # ====================
     while True:
         #if logging_on:
         #    log_state()
+        dt = Clock.tick(TICK) / 1000
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 print(f"Game over! You've scored {p1_score}")
                 return
             if event.type == MUSIC_END:
                 Audio.play_continuous()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_p:
+                    pause = not pause
 
-        screen.fill("black")
-        updatable.update(dt)
-        for thing in drawable:
-            thing.draw(screen)
-        pygame.display.flip()
-        
-        ast_list = list(asteroids)
+        if pause:
+            always_updatable.update()
+        else:
+            screen.fill("black")
+            updatable.update(dt)
+            always_updatable.update()
+            for thing in drawable:
+                thing.draw(screen)
+            pygame.display.flip()
+            
+            ast_list = list(asteroids)
 
-        for ast in ast_list:
-            if ast.position.distance_squared_to(Player1.position) > COLLISION_DIST**2:
-                continue
-            if ast.collides_with(Player1):
-                if logging_on:
-                    log_event("player_hit")
-                if invulnerability == False:
-                    print(f"Game over! You've scored {p1_score}")
-                    sys.exit()
-
-        if bounce_on == True: 
-            for i, ast in enumerate(ast_list):
-                for roid in ast_list[i+1:]:
-                    if ast.position.distance_squared_to(roid.position) > COLLISION_DIST**2:
-                        continue
-                    if ast.collides_with(roid):
-                        ast.bounce(roid)
-                        # FIXME split the larger probably needs offset at bounce() before split()
-                        #if ast.radius > roid.radius:
-                        #    ast.split()
-                        #    ast.overlap(roid, True)
-                        #else: roid.split()
-
-        for pew in shots:
             for ast in ast_list:
-                if ast.collides_with(pew):
-                    ast.split()
-                    pew.kill()
-                    if ast.radius > ASTEROID_MIN_RADIUS:
-                        p1_score += 2
-                    else:
-                        p1_score += 1
+                if ast.position.distance_squared_to(Player1.position) > COLLISION_DIST**2:
+                    continue
+                if ast.collides_with(Player1):
+                    if logging_on:
+                        log_event("player_hit")
+                    if invulnerability == False:
+                        print(f"Game over! You've scored {p1_score}")
+                        sys.exit()
+
+            if bounce_on == True: 
+                for i, ast in enumerate(ast_list):
+                    for roid in ast_list[i+1:]:
+                        if ast.position.distance_squared_to(roid.position) > COLLISION_DIST**2:
+                            continue
+                        if ast.collides_with(roid):
+                            ast.bounce(roid)
 
 
-        dt = Clock.tick(TICK) / 1000
+            for pew in shots:
+                for ast in ast_list:
+                    if ast.position.distance_squared_to(pew.position) > COLLISION_DIST**2:
+                        continue
+                    if ast.collides_with(pew):
+                        ast.split()
+                        pew.kill()
+                        if ast.radius > ASTEROID_MIN_RADIUS:
+                            p1_score += 2
+                        else:
+                            p1_score += 1
 
-        
 
         """ if entity_check
             frame_count += 1
