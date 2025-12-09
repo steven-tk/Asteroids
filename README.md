@@ -34,18 +34,18 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 - Added: Rectangle class
 - Initial prototype based off of a [boot.dev](boot.dev) project
 
-## TODO
+## Current TODOs
 
+- [ ] Try increasing spawnrate by current score (multiplier for every XX score?)
+- [ ] Add HUD
 - [ ] Boolean for bounce calculation type (planar vs volumetric)
 - [ ] High-score tracking (via file?)
 - [ ] Implement cli flags to control settings (invulnerability, logging, bounce on/off, ...)
 - [ ] Find better sounds..
-- [ ] Implement non-circular hitboxes
-- [ ] Fix collisions to use proper hitboxes for player
 
 ## Future feature ideas
 
-### Prio
+### General
 
 - add screen wrap for player & shots
 - add 2 player mode (arrow + right shift?)
@@ -54,6 +54,7 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
   - add bounce for player-on-player (non damage-collision/ toggle?)
 - add HUD to track score (+ upgrades later on)
 - add progressive difficulty in some way (faster spawns...?)
+- Player flashing during invulnerability timer
 
 ### Menu/screens
 
@@ -74,26 +75,21 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
   - ALT: try programmatically created shapes.
     - how to add multiple shapes to one entity? (Like small craters on the asteroids)
 
-### Player features
+### Content features
 
 - add acceleration (player) (also missile if added as weapon)
   - try strafing controls (q/e)
 - triangular hitbox for player
-- collectable upgrades?
+- collectable upgrades
   - add drops (+life, fire rate, ..?)
-for ship on asteroid collision)
 - other power ups (e.g. laser weapon for x seconds, invulnerability-shield, …) sprites/on-screen effects for this?
-
-## Reminder
-
-try using the debugger
 
 ## Attribution
 
-Sound Effect by
+Sound Effect:
 
-- [RescopicSound](https://pixabay.com/users/rescopicsound-45188866/) from [Pixabay](https://pixabay.com/)
+- [Sci-Fi Weapon - Shoot - Firing - Plasma KU 01-05 by RescopicSound](https://pixabay.com/users/rescopicsound-45188866/) from [Pixabay](https://pixabay.com/) under [Pixabay License / CCO](https://pixabay.com/service/license-summary/)
 
-Music by
+Music:
 
 - [5 Chiptunes (Action)](https://opengameart.org/content/5-chiptunes-action) by [Juhani Junkala](https://www.youtube.com/watch?v=dbACpSy9FWY) from [OpenGameArt](https://opengameart.org/) under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
