@@ -21,7 +21,7 @@ def main():
     logging_on = False
     entity_check = False
 
-    bounce_on = True
+    bounce_off = False
     player_two = False
     invulnerability = False
 
@@ -108,7 +108,9 @@ def main():
                         print(f"Game over! You've scored {p1_score}")
                         sys.exit()
 
-            if bounce_on == True: 
+            if bounce_off:
+                pass
+            else:
                 for i, ast in enumerate(ast_list):
                     for roid in ast_list[i+1:]:
                         if ast.position.distance_squared_to(roid.position) > COLLISION_DIST**2:

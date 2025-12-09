@@ -31,6 +31,7 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 - Added: Basic score tracking (prints on death)
 - Added: Asteroid explosions with randomized shrapnel in all direction
 - Added: Rectangle class
+- Initial prototype based off of a [boot.dev](boot.dev) project
 
 ## TODO
 
