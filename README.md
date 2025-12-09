@@ -78,8 +78,6 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 
 - add acceleration (player) (also missile if added as weapon)
   - try strafing controls (q/e)
-- add life (max 3?) / respawn mechanic or short invul?
-- add invulnerable frames & dmg to asteroid on ship collision?
 - triangular hitbox for player
 - collectable upgrades?
   - add drops (+life, fire rate, ..?)
