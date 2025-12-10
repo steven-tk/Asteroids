@@ -24,8 +24,9 @@ def main():
     music_off = False
 
     bounce_off = False
+    volumetric_mass = False
     player_two = False
-    invulnerable = False
+    god_mode = False
 
     TICK = 120 # make a flag for it later
 
@@ -72,7 +73,7 @@ def main():
     # ====================
     Player1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     # Player2 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-    AsteroidField1 = AsteroidField()
+    AsteroidField1 = AsteroidField(volumetric_mass)
     SaveZone = CircleShape(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SAVE_ZONE_RADIUS)
 
 
@@ -106,7 +107,7 @@ def main():
             
             ast_list = list(asteroids)
 
-            if invulnerable:
+            if god_mode:
                 pass
             else:
                 for ast in ast_list:
@@ -118,15 +119,16 @@ def main():
                         else:
                             Player1.invul_timer = PLAYER_INVUL_TIMER
                             p1_lives -= 1
+                            if p1_lives < 0:
+                                print(f"Game over! You've scored {p1_score}")
+                                sys.exit()
                             print(f"Player 1 got hit. You've got {p1_lives} left.")
                             for ast in ast_list:
                                 if ast.position.distance_squared_to(SaveZone.position) < COLLISION_DIST**2:
                                     ast.explode(1, 3)
                                     ast.kill()
                             Player1.teleport_to(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-                    if p1_lives < 0:
-                        print(f"Game over! You've scored {p1_score}")
-                        sys.exit()
+                    
 
             if bounce_off:
                 pass
@@ -144,7 +146,7 @@ def main():
                     if ast.position.distance_squared_to(pew.position) > COLLISION_DIST**2:
                         continue
                     if ast.collides_with(pew):
-                        ast.split()
+                        ast.split(volumetric_mass)
                         pew.kill()
                         if ast.radius > ASTEROID_MIN_RADIUS:
                             p1_score += 2
@@ -152,10 +154,10 @@ def main():
                             p1_score += 1
 
 
-        """ if entity_check
+        if entity_check:
             frame_count += 1
             if frame_count % 60 == 0:
-                print("Asteroids:", len(asteroids), "Shots:", len(shots), "Shrapnels:", len(shrapnels)) """
+                print("Asteroids:", len(asteroids), "Shots:", len(shots), "Shrapnels:", len(shrapnels))
 
         
 

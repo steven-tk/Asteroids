@@ -8,12 +8,16 @@ from shrapnel import Shrapnel
 from logger import log_event
 
 class Asteroid(CircleShape):
-    def __init__(self, x, y, radius):
+    def __init__(self, x, y, radius, volumetric_mass):
         super().__init__(x, y, radius)
         self.density = random.uniform(0.8, 1.2)
         # Planar mass vs volumetric mass:
-        #self.mass = self.density * (4/3) * math.pi * self.radius **3
-        self.mass = math.pi * self.radius ** 2
+        if volumetric_mass:
+            self.mass = self.density * (4/3) * math.pi * self.radius **3
+        else:
+            self.mass = math.pi * self.radius ** 2
+            
+        
 
     def draw(self, screen):
         pygame.draw.circle(screen, "grey", self.position, self.radius, LINE_WIDTH)
@@ -41,7 +45,7 @@ class Asteroid(CircleShape):
             self.position -= normal * (overlap / 2)
             other.position += normal * (overlap / 2)
 
-    def split(self):
+    def split(self,volumetric_mass):
         self.kill()
         if self.radius <= ASTEROID_MIN_RADIUS:
             self.explode(0.2, 1.5)
@@ -52,9 +56,9 @@ class Asteroid(CircleShape):
             new_radius = self.radius - ASTEROID_MIN_RADIUS
             speed_up = 1.2
 
-            new1 = Asteroid(self.position[0], self.position[1], new_radius)
+            new1 = Asteroid(self.position[0], self.position[1], new_radius, volumetric_mass)
             new1.velocity = self.velocity.rotate(random_angle) * speed_up
-            new2 = Asteroid(self.position[0], self.position[1], new_radius)
+            new2 = Asteroid(self.position[0], self.position[1], new_radius, volumetric_mass)
             new2.velocity = self.velocity.rotate(-random_angle) * speed_up
 
     def bounce(self, other, restitution=1.0):

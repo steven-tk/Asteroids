@@ -14,7 +14,9 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 
 ## Changelog
 
-- Added: 3 lives, upon hit: respawn in center (1sec invulnerability) & savezone cleared of asteroids
+- Added: Boolean for planar vs volumetric mass (bounce physics)
+- Added: Savezone in center - cleared of asteroids if respawning
+- Added: 3 lives, upon hit: respawn in center (1sec invulnerability)
 - Improvement: Colors tweaks
 - Added: Pause key (p)
 - Improved: Music queue with randomized playback (except the opening song)
@@ -38,10 +40,9 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 
 - [ ] Try increasing spawnrate by current score (multiplier for every XX score?)
 - [ ] Add HUD
-- [ ] Boolean for bounce calculation type (planar vs volumetric)
 - [ ] High-score tracking (via file?)
 - [ ] Implement cli flags to control settings (invulnerability, logging, bounce on/off, ...)
-- [ ] Find better sounds..
+- [ ] Find better sounds..?
 
 ## Future feature ideas
 
@@ -79,6 +80,7 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 
 - add acceleration (player) (also missile if added as weapon)
   - try strafing controls (q/e)
+  - add inertia to player ship for balance?
 - triangular hitbox for player
 - collectable upgrades
   - add drops (+life, fire rate, ..?)
