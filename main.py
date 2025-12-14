@@ -1,6 +1,6 @@
 import pygame
 import sys
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, COLLISION_DIST, ASTEROID_MIN_RADIUS, SAVE_ZONE_RADIUS, PLAYER_INVUL_TIMER
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT, COLLISION_DIST, ASTEROID_MIN_RADIUS, SAVE_ZONE_RADIUS, PLAYER_INVUL_TIMER, PLAYER_NAME
 from audio_manager import Audio
 from logger import log_state, log_event
 from player import Player
@@ -23,13 +23,16 @@ def main():
     logging_on = False
     entity_check = False
     music_off = False
+    TICK = 120 # make a flag later
 
     bounce_off = False
     volumetric_mass = False
-    player_two = False
-    god_mode = False
 
-    TICK = 120 # make a flag for it later
+    god_mode = False
+    out_of_bounds_penalty = False
+    # player_two = False
+
+    
 
 
     # ====================
@@ -46,10 +49,6 @@ def main():
     else:
         Audio.start_music()
 
-    p1_score = 0
-    p2_score = 0
-    p1_lives = 3
-    p2_lives = 3
     frame_count = 0
     pause = False
 
@@ -88,7 +87,7 @@ def main():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                print(f"Game over! You've scored {p1_score}")
+                print(f"Game quit. Your score is lost.")
                 return
             if event.type == MUSIC_END:
                 Audio.play_continuous()
@@ -106,38 +105,38 @@ def main():
                 thing.draw(screen)
             pygame.display.flip()
             
-            ast_list = list(asteroids)
 
             if god_mode:
                 pass
             else:
-                for ast in ast_list:
-                    if ast.position.distance_squared_to(Player1.position) > COLLISION_DIST**2:
-                        continue
-                    if ast.collides_with(Player1):
-                        if Player1.invul_check():
-                            Player1.teleport_to(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-                        else:
-                            Player1.invul_timer = PLAYER_INVUL_TIMER
-                            p1_lives -= 1
-                            if p1_lives < 0:
-                                Score.add_score(p1_score)
-                                Score.save_file()
-                                print("\n==============================")
-                                print(f"Game over! You've scored: {p1_score}")
-                                print("==============================\n")
-                                Score.print_highscores()
-                                print("==============================")
-                                print(f"\nIssues or Feedback:\nhttps://github.com/steven-tk/Asteroids\n")
-                                pygame.quit()
-                                sys.exit()
-                            print(f"Player 1 got hit. You've got {p1_lives} left.")
-                            for ast in ast_list:
-                                if ast.position.distance_squared_to(SaveZone.position) < COLLISION_DIST**2:
-                                    ast.explode(1, 3)
-                                    ast.kill()
-                            Player1.teleport_to(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-                    
+                if Player1.lifes <= 0:
+                    Score.add_score(Player1.score)
+                    Score.save_file()
+                    print("\n==============================")
+                    print(f"Game over! You've scored: {Player1.score}")
+                    print("==============================\n")
+                    Score.print_highscores()
+                    print("==============================")
+                    print(f"\nIssues or Feedback:\nhttps://github.com/steven-tk/Asteroids\n")
+                    pygame.quit()
+                    sys.exit()
+
+
+            Player1.check_bounds()
+            if Player1.out_of_bounds == True:
+                if out_of_bounds_penalty:
+                    Player1.lifes -= 1
+                    Player1.invul_timer = PLAYER_INVUL_TIMER * 1 # try 0.5 if too lenient
+                    Player1.teleport_to()
+                    Player1.out_of_bounds = False
+                else:
+                    new_x = Player1.position.x % SCREEN_WIDTH
+                    new_y = Player1.position.y % SCREEN_HEIGHT
+                    Player1.teleport_to(new_x, new_y)
+                    Player1.out_of_bounds = False
+                
+
+            ast_list = list(asteroids)
 
             if bounce_off:
                 pass
@@ -149,6 +148,23 @@ def main():
                         if ast.collides_with(roid):
                             ast.bounce(roid)
 
+           
+            for ast in ast_list:
+                if ast.position.distance_squared_to(Player1.position) > COLLISION_DIST**2:
+                    continue
+                if ast.collides_with(Player1):
+                    if Player1.invul_check():
+                        Player1.teleport_to()
+                    else:
+                        Player1.invul_timer = PLAYER_INVUL_TIMER
+                        Player1.lifes -= 1
+                        print(f"{PLAYER_NAME} got hit. You've got {Player1.lifes} left.")
+                        for ast in ast_list:
+                            if ast.position.distance_squared_to(SaveZone.position) < COLLISION_DIST**2:
+                                ast.explode(1, 3)
+                                ast.kill()
+                        Player1.teleport_to()
+
 
             for pew in shots:
                 for ast in ast_list:
@@ -158,9 +174,9 @@ def main():
                         ast.split(volumetric_mass)
                         pew.kill()
                         if ast.radius > ASTEROID_MIN_RADIUS:
-                            p1_score += 2
+                            Player1.score += 2
                         else:
-                            p1_score += 1
+                            Player1.score += 1
 
 
         if entity_check:

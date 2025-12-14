@@ -31,6 +31,11 @@ If you want a custom Player name for your scores: change it in constants.py (for
 ## Changelog
 
 - 14 Dec 2025
+  - Added: Out-of bounds handling for player (only for the player!)
+    - screen wrap freely (default behavior)
+    - take -1 life penalty & respawn in center (invulnerability timer) (main.py boolean set to True)
+  - Improved: Refactored handling of score, lifes, teleport and game over condition
+- 14 Dec 2025
   - Improved: New post game display of score & current high scores in console
   - Added: High-Score tracking via .json
   - Added: ScoreManager
@@ -60,7 +65,7 @@ If you want a custom Player name for your scores: change it in constants.py (for
 
 ## Current TODOs
 
-- [ ] Add out of bounds death (ops..)
+- [ ] rework file structure and add directories
 - [ ] Try increasing spawn rate by current score (multiplier for every XX score?)
 - [ ] Add HUD
 - [ ] Display current score
@@ -72,7 +77,6 @@ If you want a custom Player name for your scores: change it in constants.py (for
 
 ### General
 
-- add screen wrap for player & shots
 - add 2 player mode (arrow + right shift?)
   - use subclass and overwrite control function
   - Control via command flags (e.g. -2p) (or menu later on?)

@@ -1,5 +1,5 @@
 import pygame
-from constants import PLAYER_RADIUS, LINE_WIDTH, PLAYER_TURN_SPEED, PLAYER_SPEED, PLAYER_SHOOT_SPEED, SHOT_RADIUS, PLAYER_SHOOT_COOLDOWN_SECONDS
+from constants import PLAYER_RADIUS, LINE_WIDTH, PLAYER_TURN_SPEED, PLAYER_SPEED, PLAYER_SHOOT_SPEED, PLAYER_LIFES, SHOT_RADIUS, PLAYER_SHOOT_COOLDOWN_SECONDS, SCREEN_WIDTH, SCREEN_HEIGHT
 from audio_manager import Audio
 from circleshape import CircleShape
 from shot import Shot
@@ -11,6 +11,9 @@ class Player(CircleShape):
         self.rotation = 0
         self.cooldown = 0
         self.invul_timer = 0
+        self.out_of_bounds = False
+        self.lifes = PLAYER_LIFES
+        self.score = 0
     
     # in the Player class
     def triangle(self):
@@ -70,11 +73,24 @@ class Player(CircleShape):
             bullet.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
             Audio.play_sound("blaster", 5)
 
-    def teleport_to(self, x, y):
-        self.position = pygame.Vector2(x, y)
-
     def invul_check(self):
         if self.invul_timer > 0:
             return True
         else:
             return False
+
+    def teleport_to(self, x=(None), y=None):
+        if x is None:
+            x = SCREEN_WIDTH / 2
+        if y is None:
+            y = SCREEN_HEIGHT / 2
+        self.position = pygame.Vector2(x, y)
+
+    def check_bounds(self):
+        if (
+            0 > self.position.x
+            or self.position.x > SCREEN_WIDTH
+            or 0 > self.position.y
+            or self.position.y > SCREEN_HEIGHT
+        ):
+            self.out_of_bounds = True
