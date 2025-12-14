@@ -9,10 +9,13 @@
         "juhani",
         "junkala",
         "Prio",
+        "pygame",
         "rectangleshape",
         "rescopicsound",
         "respawn",
+        "respawning",
         "roid",
+        "Savezone",
         "shrapnels"
     ]
 }

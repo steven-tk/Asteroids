@@ -14,36 +14,38 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 
 ## Changelog
 
-- Improved: New post game display of score & current high scores in console
-- Added: High-Score tracking via .json
-- Added: ScoreManager
-- Fixes: improper quiting on death
-- Added: Boolean for planar vs volumetric mass (bounce physics)
-- Added: Savezone in center - cleared of asteroids if respawning
-- Added: 3 lives, upon hit: respawn in center (1sec invulnerability)
-- Improvement: Colors tweaks
-- Added: Pause key (p)
-- Improved: Music queue with randomized playback (except the opening song)
-- Added: Music loading and playback (proof of concept)
-- Added: Audio-manager and changed how sound is handled
-- Improved: Bounce physics now uses mass (pick between planar vs volumetric)
-- Added: Mass for physic calculations
-- Improved: Scoring based on size (med/big = 2, small = 1)
-- Added: Asteroid destruction sound (placeholder?)
-- Improved: Randomized shot sound (less monotonous) with new sounds
-- Fixed: Bullet spawn location (in front instead of inside player)
-- Fixed: Asteroid splitting correctly with offset (instead of overlapping)
-- Added: Asteroid-on-asteroid bounce (no mass/size physics yet)
-- Added: Basic sound effect as a proof of concept
-- Added: Basic score tracking (prints on death)
-- Added: Asteroid explosions with randomized shrapnel in all direction
-- Added: Rectangle class
+- 14 Dez 2025
+  - Improved: New post game display of score & current high scores in console
+  - Added: High-Score tracking via .json
+  - Added: ScoreManager
+  - Fixes: improper quitting on death
+- forgot to add dates earlier
+  - Added: Boolean for planar vs volumetric mass (bounce physics)
+  - Added: Savezone in center - cleared of asteroids if respawning
+  - Added: 3 lives, upon hit: respawn in center (1sec invulnerability)
+  - Improvement: Colors tweaks
+  - Added: Pause key (p)
+  - Improved: Music queue with randomized playback (except the opening song)
+  - Added: Music loading and playback (proof of concept)
+  - Added: Audio-manager and changed how sound is handled
+  - Improved: Bounce physics now uses mass (pick between planar vs volumetric)
+  - Added: Mass for physic calculations
+  - Improved: Scoring based on size (med/big = 2, small = 1)
+  - Added: Asteroid destruction sound (placeholder?)
+  - Improved: Randomized shot sound (less monotonous) with new sounds
+  - Fixed: Bullet spawn location (in front instead of inside player)
+  - Fixed: Asteroid splitting correctly with offset (instead of overlapping)
+  - Added: Asteroid-on-asteroid bounce (no mass/size physics yet)
+  - Added: Basic sound effect as a proof of concept
+  - Added: Basic score tracking (prints on death)
+  - Added: Asteroid explosions with randomized shrapnel in all direction
+  - Added: Rectangle class
 - Initial prototype based off of a [boot.dev](boot.dev) project
 
 ## Current TODOs
 
 - [ ] Add out of bounds death (ops..)
-- [ ] Try increasing spawnrate by current score (multiplier for every XX score?)
+- [ ] Try increasing spawn rate by current score (multiplier for every XX score?)
 - [ ] Add HUD
 - [ ] High-score tracking (via file?)
 - [ ] Implement cli flags to control settings (invulnerability, logging, bounce on/off, ...)
