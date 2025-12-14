@@ -14,7 +14,7 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 
 ## Changelog
 
-- 14 Dez 2025
+- 14 Dec 2025
   - Improved: New post game display of score & current high scores in console
   - Added: High-Score tracking via .json
   - Added: ScoreManager
