@@ -39,8 +39,7 @@ class ScoreManager:
     def print_highscores(self):
         print("===== Current Highscores =====")
         for i, entry in enumerate(self.scores, start=1):
-            print(f"{i:>6}. {entry['name']:<10} {entry['score']:>6}")
-        #   print(f"{i:>2}. {entry['name']:<10} {entry['score']:>6}")
+            print(f"{i:>3}. {entry['score']:>5} - {entry['name']}")
 
 
                                     

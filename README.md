@@ -42,6 +42,7 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 
 ## Current TODOs
 
+- [ ] Add out of bounds death (ops..)
 - [ ] Try increasing spawnrate by current score (multiplier for every XX score?)
 - [ ] Add HUD
 - [ ] High-score tracking (via file?)
