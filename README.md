@@ -39,7 +39,7 @@ If you want a custom Player name for your scores: change it in constants.py (for
   - Improved: New post game display of score & current high scores in console
   - Added: High-Score tracking via .json
   - Added: ScoreManager
-  - Fixes: improper quitting on death
+  - Fixes: improper quitting on game over
 - forgot to add dates earlier
   - Added: Boolean for planar vs volumetric mass (bounce physics)
   - Added: Savezone in center - cleared of asteroids if respawning
