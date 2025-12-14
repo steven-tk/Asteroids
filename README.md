@@ -4,13 +4,27 @@ Project uses [pygame](https://www.pygame.org/) build with [UV](https://docs.astr
 
 ---
 
-Controls:
+## How to play
+
+### Install
+
+Install mise if you don't have it. Use `mise run` & confirm with enter to start.
+
+Should to download the correct pygame, python & uv version on first start.
+
+### Controls
 
 - W/A/S/D to move
 - SPACE to shoot
 - P to pause/unpause
 
-Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing, invulnerability, ..).
+### Other
+
+Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing, invulnerability, ...).
+
+If you want a custom Player name for your scores: change it in constants.py (for now).
+
+---
 
 ## Changelog
 
@@ -47,7 +61,8 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 - [ ] Add out of bounds death (ops..)
 - [ ] Try increasing spawn rate by current score (multiplier for every XX score?)
 - [ ] Add HUD
-- [ ] High-score tracking (via file?)
+- [ ] Display current score
+- [ ] Display High Score during pause
 - [ ] Implement cli flags to control settings (invulnerability, logging, bounce on/off, ...)
 - [ ] Find better sounds..?
 
