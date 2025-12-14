@@ -9,6 +9,7 @@ from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
 from shrapnel import Shrapnel
+from scoremanager import Score
 
 
 
@@ -120,7 +121,15 @@ def main():
                             Player1.invul_timer = PLAYER_INVUL_TIMER
                             p1_lives -= 1
                             if p1_lives < 0:
-                                print(f"Game over! You've scored {p1_score}")
+                                Score.add_score(p1_score)
+                                Score.save_file()
+                                print("\n==============================")
+                                print(f"Game over! You've scored: {p1_score}")
+                                print("==============================\n")
+                                Score.print_highscores()
+                                print("==============================")
+                                print(f"\nIssues or Feedback:\nhttps://github.com/steven-tk/Asteroids\n")
+                                pygame.quit()
                                 sys.exit()
                             print(f"Player 1 got hit. You've got {p1_lives} left.")
                             for ast in ast_list:

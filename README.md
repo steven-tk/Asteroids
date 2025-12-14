@@ -14,6 +14,10 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 
 ## Changelog
 
+- Improved: New post game display of score & current high scores in console
+- Added: High-Score tracking via .json
+- Added: ScoreManager
+- Fixes: improper quiting on death
 - Added: Boolean for planar vs volumetric mass (bounce physics)
 - Added: Savezone in center - cleared of asteroids if respawning
 - Added: 3 lives, upon hit: respawn in center (1sec invulnerability)
@@ -22,7 +26,7 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 - Improved: Music queue with randomized playback (except the opening song)
 - Added: Music loading and playback (proof of concept)
 - Added: Audio-manager and changed how sound is handled
-- Improved: Bounce physics now uses mass (toggle for planar vs volumetric)
+- Improved: Bounce physics now uses mass (pick between planar vs volumetric)
 - Added: Mass for physic calculations
 - Improved: Scoring based on size (med/big = 2, small = 1)
 - Added: Asteroid destruction sound (placeholder?)
