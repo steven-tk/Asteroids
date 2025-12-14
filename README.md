@@ -8,9 +8,11 @@ Project uses [pygame](https://www.pygame.org/) build with [UV](https://docs.astr
 
 ### Install
 
-Install mise if you don't have it. Use `mise run` & confirm with enter to start.
+[Install](https://mise.jdx.dev) mise if you don't have it and optionally [activate](https://mise.jdx.dev/getting-started.html#activate-mise) it.
 
-Should to download the correct pygame, python & uv version on first start.
+Use `mise run` & confirm with enter to start.
+
+Should now automatically download the correct pygame, python & uv version on your first start.
 
 ### Controls
 
