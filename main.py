@@ -109,7 +109,7 @@ def main():
             if god_mode:
                 pass
             else:
-                if Player1.lifes <= 0:
+                if Player1.lives <= 0:
                     Score.add_score(Player1.score)
                     Score.save_file()
                     print("\n==============================")
@@ -125,7 +125,7 @@ def main():
             Player1.check_bounds()
             if Player1.out_of_bounds == True:
                 if out_of_bounds_penalty:
-                    Player1.lifes -= 1
+                    Player1.lives -= 1
                     Player1.invul_timer = PLAYER_INVUL_TIMER * 1 # try 0.5 if too lenient
                     Player1.teleport_to()
                     Player1.out_of_bounds = False
@@ -157,8 +157,8 @@ def main():
                         Player1.teleport_to()
                     else:
                         Player1.invul_timer = PLAYER_INVUL_TIMER
-                        Player1.lifes -= 1
-                        print(f"{PLAYER_NAME} got hit. You've got {Player1.lifes} left.")
+                        Player1.lives -= 1
+                        print(f"{PLAYER_NAME} got hit. You've got {Player1.lives} left.")
                         for ast in ast_list:
                             if ast.position.distance_squared_to(SaveZone.position) < COLLISION_DIST**2:
                                 ast.explode(1, 3)

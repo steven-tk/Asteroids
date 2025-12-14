@@ -34,7 +34,7 @@ If you want a custom Player name for your scores: change it in constants.py (for
   - Added: Out-of bounds handling for player (only for the player!)
     - screen wrap freely (default behavior)
     - take -1 life penalty & respawn in center (invulnerability timer) (main.py boolean set to True)
-  - Improved: Refactored handling of score, lifes, teleport and game over condition
+  - Improved: Refactored handling of score, lives, teleport and game over condition
 - 14 Dec 2025
   - Improved: New post game display of score & current high scores in console
   - Added: High-Score tracking via .json

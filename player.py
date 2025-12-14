@@ -1,5 +1,5 @@
 import pygame
-from constants import PLAYER_RADIUS, LINE_WIDTH, PLAYER_TURN_SPEED, PLAYER_SPEED, PLAYER_SHOOT_SPEED, PLAYER_LIFES, SHOT_RADIUS, PLAYER_SHOOT_COOLDOWN_SECONDS, SCREEN_WIDTH, SCREEN_HEIGHT
+from constants import PLAYER_RADIUS, LINE_WIDTH, PLAYER_TURN_SPEED, PLAYER_SPEED, PLAYER_SHOOT_SPEED, PLAYER_LIVES, SHOT_RADIUS, PLAYER_SHOOT_COOLDOWN_SECONDS, SCREEN_WIDTH, SCREEN_HEIGHT
 from audio_manager import Audio
 from circleshape import CircleShape
 from shot import Shot
@@ -12,7 +12,7 @@ class Player(CircleShape):
         self.cooldown = 0
         self.invul_timer = 0
         self.out_of_bounds = False
-        self.lifes = PLAYER_LIFES
+        self.lives = PLAYER_LIVES
         self.score = 0
     
     # in the Player class
