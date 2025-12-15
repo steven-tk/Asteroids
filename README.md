@@ -26,21 +26,24 @@ Main.py has a few things you can turn on/off via boolean (e.g asteroid bouncing,
 
 If you want a custom Player name for your scores: change it in constants.py (for now).
 
+Scoring: small asteroids give +1 score, medium & large give +2.
+
 ---
 
 ## Changelog
 
 - 14 Dec 2025
-  - Added: Out-of bounds handling for player (only for the player!)
-    - screen wrap freely (default behavior)
-    - take -1 life penalty & respawn in center (invulnerability timer) (main.py boolean set to True)
+  - Added: Out-of bounds handling
+    - Default behavior: player can screen wrap freely
+    - `out_of_bounds_penalty = True` in main.py: -1 life & respawn in center & invulnerability timer
   - Improved: Refactored handling of score, lives, teleport and game over condition
+  - Improved: General code cleanup
 - 14 Dec 2025
   - Improved: New post game display of score & current high scores in console
   - Added: High-Score tracking via .json
   - Added: ScoreManager
   - Fixed: improper quitting on game over
-- forgot to add dates earlier
+- forgot to track dates earlier
   - Added: Boolean for planar vs volumetric mass (bounce physics)
   - Added: Savezone in center - cleared of asteroids if respawning
   - Added: 3 lives, upon hit: respawn in center (1sec invulnerability)
