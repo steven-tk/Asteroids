@@ -1,6 +1,5 @@
 import pygame
 
-# Base class for game objects
 class RectangleShape(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
         if hasattr(self, "containers"):
@@ -31,11 +30,3 @@ class RectangleShape(pygame.sprite.Sprite):
             return True
         else:
             return False
-
-
-
-    # self.position()
-    # returns vector
-
-    # distance_to()
-    # calcs distance to vector, returns float

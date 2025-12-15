@@ -23,7 +23,7 @@ def main():
     logging_on = False
     entity_check = False
     music_off = False
-    TICK = 120 # make a flag later
+    TICK = 120
 
     bounce_off = False
     volumetric_mass = False
@@ -33,8 +33,6 @@ def main():
     # player_two = False
 
     
-
-
     # ====================
     # Game Init
     # ====================
@@ -122,11 +120,18 @@ def main():
                     sys.exit()
 
 
+            ast_list = list(asteroids)
+
+
             Player1.check_bounds()
             if Player1.out_of_bounds == True:
                 if out_of_bounds_penalty:
                     Player1.lives -= 1
                     Player1.invul_timer = PLAYER_INVUL_TIMER * 1 # try 0.5 if too lenient
+                    for ast in ast_list:
+                            if ast.position.distance_squared_to(SaveZone.position) < COLLISION_DIST**2:
+                                ast.explode(1, 3)
+                                ast.kill()
                     Player1.teleport_to()
                     Player1.out_of_bounds = False
                 else:
@@ -135,8 +140,6 @@ def main():
                     Player1.teleport_to(new_x, new_y)
                     Player1.out_of_bounds = False
                 
-
-            ast_list = list(asteroids)
 
             if bounce_off:
                 pass

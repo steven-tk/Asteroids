@@ -11,7 +11,6 @@ class Asteroid(CircleShape):
     def __init__(self, x, y, radius, volumetric_mass):
         super().__init__(x, y, radius)
         self.density = random.uniform(0.8, 1.2)
-        # Planar mass vs volumetric mass:
         if volumetric_mass:
             self.mass = self.density * (4/3) * math.pi * self.radius **3
         else:
@@ -94,17 +93,3 @@ class Asteroid(CircleShape):
             if total > 0:
                 self.position += -normal * (overlap * (m2 / total))
                 other.position += normal * (overlap * (m1 / total))
-
-       
-
-        # old version:
-        # self.overlap(other)
-        # self.velocity -= 2 * self.velocity.dot(normal) * normal
-        # other.velocity -= 2 * other.velocity.dot(-normal) * -normal
-        
-
-
-
-
-
-

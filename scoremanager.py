@@ -1,4 +1,3 @@
-#import pygame
 import json
 from constants import SCORE_FILE, MAX_SCORES, PLAYER_NAME
 
@@ -16,7 +15,7 @@ class ScoreManager:
             self.scores = []
             return
 
-        with open(self.file, "r") as json_file: # (3) why "r" ?
+        with open(self.file, "r") as json_file:
             data = json.load(json_file)
             self.scores = data.get("scores", [])
 
