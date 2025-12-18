@@ -63,7 +63,7 @@ Scoring: small asteroids give +1 score, medium & large give +2.
   - Added: Basic sound effect as a proof of concept
   - Added: Basic score tracking (prints on death)
   - Added: Asteroid explosions with randomized shrapnel in all direction
-  - Added: Rectangle class
+  - Added: Rectangle class for asteroid shrapnel
 - Initial prototype based off of a [boot.dev](boot.dev) project
 
 ## Current TODOs
