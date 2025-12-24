@@ -4,7 +4,6 @@ from audio_manager import Audio
 from circleshape import CircleShape
 from shot import Shot
 
-# Player Class
 class Player(CircleShape):
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_RADIUS)
@@ -15,7 +14,6 @@ class Player(CircleShape):
         self.lives = PLAYER_LIVES
         self.score = 0
     
-    # in the Player class
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         right = pygame.Vector2(0, 1).rotate(self.rotation + 90) * self.radius / 1.5
